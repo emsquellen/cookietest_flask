@@ -9,7 +9,7 @@
             <div class="content">
                 {% if notifications %}
                 {% for notif in notifications %}
-                <div class="toast toast-dark">
+                <div class="toast toast-light">
                     <p>{{ notif }}</p>
                 </div>
                 {% endfor %}
@@ -24,6 +24,7 @@
             </div>
         </div>
         <div class="modal-footer">
+            <a class="btn btn-primary" onclick="delete_notifs()" aria-label="Clear notifications">Clear</a>
             <a class="btn btn-primary" aria-label="Close">Close</a>
         </div>
     </div>

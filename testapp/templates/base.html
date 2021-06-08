@@ -25,7 +25,7 @@
                 <header class="navbar m-2">
                     <div class="navbar-section">
                         <a href="{{ url_for('index') }}" class="navbar-brand mr-2">Test FLASK</a>
-                        <a onclick='document.cookie = "notifications=2|3";location.reload();' class="btn btn-link">Add cookie with JS (DEBUG FUNCTION)</a>
+                        <a onclick='add_cookies()' class="btn btn-link">Add cookie with JS (DEBUG FUNCTION)</a>
                     </div>
                     <div class="navbar-section">
                         {% if not n_count %}
