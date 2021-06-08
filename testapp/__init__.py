@@ -28,6 +28,8 @@ def make_app():
                              'Jar almost empty.'),
                 Notification(
                     '1 cookie added to your inventory!', 'primary'),
+                Notification(
+                    '2 cookies added to your inventory!', 'secondary'),
             ])
             n('/')
         return render_template('index.html', form=form)
