@@ -55,10 +55,7 @@ class Notification(object):
         curr_not = self.get_notification_ids()
         curr_not.append(self.id)
         cookie_val = "|".join(curr_not)
-        print(cookie_val)
-        resp.set_cookie('notifications', value=cookie_val,
-                        domain='emswebtech.herokuapp.com')
-        print(resp)
+        resp.set_cookie('notifications', value=cookie_val)
         return resp
 
     def create_flash_string(self) -> str:
