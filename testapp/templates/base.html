@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Ems' Cookie Module Test</title>
+    <meta name="description" content="test website">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-exp.min.css">
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+    <script src=" {{ url_for('static', filename='js/main.js') }} "></script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <h2 class="browsehappy">You are using an <strong>outdated</strong>
+                browser. Please <a href="#">upgrade your browser</a> to visit
+                this page.</h2>
+        <![endif]-->
+    <div class="container">
+        <div class="columns">
+            <div class="column">
+                <header class="navbar m-2">
+                    <div class="navbar-section">
+                        <a href="{{ url_for('index') }}" class="navbar-brand mr-2">Test FLASK</a>
+                    </div>
+                    <div class="navbar-section">
+                        {% if not n_count %}
+                        <a class="btn btn-primary" onclick="activate_modal()">Notifications</a>
+                        {% else %}
+                        <a class="btn btn-primary badge" data-badge="{{ n_count }}" onclick="
+                            activate_modal()">Notifications</a>
+                        {% endif %}
+                    </div>
+                </header>
+            </div>
+        </div>
+    </div>
+    {% include 'modals.html' %}
+    {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+    <div class="columns">
+        <div class="column col-sm-12 col-10 col-mx-auto">
+            {% for category, message in messages %}
+            <div class="toast toast-{{ category }}" data-toast>
+                {{ message }}
+                <button class="btn btn-clear float-right"></button>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+    <div class="container">
+        {% block content %}
+        {% endblock %}
+    </div>
+</body>
+
+</html>

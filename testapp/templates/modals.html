@@ -1,0 +1,30 @@
+<div class="modal" id="notificationCentre">
+    <a class="modal-overlay" aria-label="Close"></a>
+    <div class="modal-container">
+        <div class="modal-header">
+            <a class="btn btn-clear float-right" aria-label="Close"></a>
+            <div class="modal-title h5">Notifications</div>
+        </div>
+        <div class="modal-body">
+            <div class="content">
+                {% if notifications %}
+                {% for notif in notifications %}
+                <div class="toast toast-dark">
+                    <p>{{ notif }}</p>
+                </div>
+                {% endfor %}
+                {% else %}
+                <div class="empty">
+                    <div class="empty-icon">
+                        <i class="icon icon-people"></i>
+                    </div>
+                    <p class="empty-title h5">You have no new notificatiobns</p>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a class="btn btn-primary" aria-label="Close">Close</a>
+        </div>
+    </div>
+</div>

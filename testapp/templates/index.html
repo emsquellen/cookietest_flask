@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="columns">
+    <div class="column col-3 col-mx-auto">
+        <div class="card">
+            <div class="card-image">
+                <img class="img-responsive" src="{{ url_for('static', filename='img.jpg') }}"
+                    alt="Out of focus photograph of chocolate chip cookies.">
+            </div>
+            <div class="card-header">
+                <div class="card-title h5">Cookies</div>
+                <div class="card-subtitle text-gray">Tasty snacks</div>
+            </div>
+            <div class="card-body">
+                <p>Get some today!</p>
+                <form method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="input-group">
+                        <span class="input-group-addon">spain</span>
+                        {{ form.captcha(class="form-input", type="text", placeholder="spain") }}
+                        {{ form.submit(class="btn btn-primary input-group-btn", id="submit") }}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
