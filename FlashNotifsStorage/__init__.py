@@ -1,5 +1,5 @@
 from json.decoder import JSONDecodeError
-from flask import flash, Markup, request, make_response, redirect
+from flask import flash, Markup, request
 import os
 import json
 
@@ -41,7 +41,7 @@ class Notification(object):
     def __call__(self, url: str) -> None:
         self.run(url)
 
-    def run(self, url: str) -> Response:
+    def run(self, url: str) -> None:
         """Shows the notification and saves it into the browser's cookies.
 
         :param url: url to redirect to after the notification.
@@ -50,13 +50,6 @@ class Notification(object):
         :rtype: Response
         """
         self.flash_notif()
-
-        resp = make_response(redirect(url))
-        curr_not = self.get_notification_ids()
-        curr_not.append(self.id)
-        cookie_val = "|".join(curr_not)
-        resp.set_cookie('notifications', value=cookie_val)
-        return resp
 
     def create_flash_string(self) -> str:
         message = []

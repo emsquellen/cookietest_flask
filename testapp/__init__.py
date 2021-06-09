@@ -1,4 +1,4 @@
-from flask import Flask, render_template, url_for, request, Markup
+from flask import Flask, render_template, url_for, request, Markup, make_response
 from flask_wtf import FlaskForm
 from wtforms import SubmitField, StringField
 from wtforms.validators import DataRequired, Regexp
@@ -22,16 +22,23 @@ def make_app():
             n = choice([
                 Notification(
                     'One cookie has been added to your inventory!', 'success'),
-                Notification('You have consumed too much cookies.', 'error'
-                             ),
-                Notification('jar almost empty', 'warning',
-                             'Jar almost empty.'),
+                Notification(
+                    'You have consumed too much cookies.', 'error'),
+                Notification(
+                    'Jar almost empty', 'warning', 'Attention!.'),
                 Notification(
                     '1 cookie added to your inventory!', 'primary'),
                 Notification(
                     '2 cookies added to your inventory!', 'secondary'),
             ])
             n('/')
+
+            resp = make_response(render_template('index.html', form=form))
+            curr_not = n.get_notification_ids()
+            curr_not.append(n.id)
+            cookie_val = "|".join(curr_not)
+            resp.set_cookie('notifications', value=cookie_val)
+            return resp
         return render_template('index.html', form=form)
 
     @app.context_processor

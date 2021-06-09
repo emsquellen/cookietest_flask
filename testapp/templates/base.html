@@ -25,7 +25,6 @@
                 <header class="navbar m-2">
                     <div class="navbar-section">
                         <a href="{{ url_for('index') }}" class="navbar-brand mr-2">Test FLASK</a>
-                        <a onclick='add_cookies()' class="btn btn-link">Add cookie with JS (DEBUG FUNCTION)</a>
                     </div>
                     <div class="navbar-section">
                         {% if not n_count %}
@@ -47,7 +46,7 @@
             {% for category, message in messages %}
             <div class="toast toast-{{ category }}" data-toast>
                 {{ message }}
-                <button class="btn btn-clear float-right"></button>
+                <button class="btn btn-clear float-right" onclick="this.parentNode.remove();"></button>
             </div>
             {% endfor %}
         </div>
